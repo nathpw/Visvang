@@ -80,10 +80,13 @@ namespace Visvang.Core
             // 8. Build the 3D environment
             DamEnvironmentBuilder.Build();
 
-            // 9. Generate and wire all art assets
+            // 9. Generate and wire all procedural art assets
             AssetWiring.WireAll();
 
-            // 10. Build the entire UI
+            // 10. Override procedural art with real assets from Resources/ (if any downloaded)
+            SpriteAssetLoader.LoadAndOverride();
+
+            // 11. Build the entire UI
             var uiRefs = UIBuilder.Build();
 
             // 11. Create and initialize GameFlow (master controller)
@@ -91,7 +94,11 @@ namespace Visvang.Core
             var gameFlow = flowGo.AddComponent<GameFlow>();
             gameFlow.Initialize(uiRefs);
 
-            // 12. Fill pap bucket
+            // 14. Auto-load audio from Resources/ folders (if downloaded)
+            var audioLoader = AudioManager.Instance?.gameObject.AddComponent<AudioAssetLoader>();
+            audioLoader?.AutoScanResources();
+
+            // 15. Fill pap bucket
             PapSystem.Instance?.FillBucket();
 
             Debug.Log($"[Visvang] Game ready! Save: {SaveManager.Instance.SaveFilePath}");
