@@ -55,10 +55,22 @@ namespace Visvang.Core
 
         private void Start()
         {
-            // 4. Load all game data definitions (fish, dips, rods, reels)
+            // 4. Show splash screen first, then load everything behind it
+            var splashGo = new GameObject("SplashScreen");
+            var splash = splashGo.AddComponent<UI.SplashScreen>();
+            splash.OnSplashComplete += OnSplashComplete;
+            splash.Show(0.5f, 2.5f, 0.8f);
+
+            // 5. Load everything while splash is showing
+            LoadGame();
+        }
+
+        private void LoadGame()
+        {
+            // 6. Load all game data definitions (fish, dips, rods, reels)
             RuntimeDataLoader.LoadAll();
 
-            // 5. Load local save and restore progress
+            // 7. Load local save and restore progress
             bool hasSave = SaveManager.Instance.Load();
             if (hasSave)
             {
@@ -70,41 +82,47 @@ namespace Visvang.Core
                 Debug.Log("[Visvang] No save found. Fresh start!");
             }
 
-            // 6. Initialize cloud services (Firebase) — async, non-blocking
+            // 8. Initialize cloud services (Firebase) — async, non-blocking
             if (CloudManager.Instance != null)
             {
                 CloudManager.Instance.Initialize();
                 CloudManager.Instance.OnCloudReady += OnCloudReady;
             }
 
-            // 7. Cancel any pending notifications (player is back!)
+            // 9. Cancel any pending notifications (player is back!)
             NotificationManager.Instance?.CancelAll();
 
-            // 8. Build the 3D environment
+            // 10. Build the 3D environment
             DamEnvironmentBuilder.Build();
 
-            // 9. Generate and wire all procedural art assets
+            // 11. Generate and wire all procedural art assets
             AssetWiring.WireAll();
 
-            // 10. Override procedural art with real assets from Resources/ (if any downloaded)
+            // 12. Override procedural art with real assets from Resources/ (if any downloaded)
             SpriteAssetLoader.LoadAndOverride();
 
-            // 11. Build the entire UI
+            // 13. Build the entire UI (hidden behind splash screen)
             var uiRefs = UIBuilder.Build();
 
-            // 11. Create and initialize GameFlow (master controller)
+            // 14. Create and initialize GameFlow (master controller)
             var flowGo = new GameObject("GameFlow");
             var gameFlow = flowGo.AddComponent<GameFlow>();
             gameFlow.Initialize(uiRefs);
 
-            // 14. Auto-load audio from Resources/ folders (if downloaded)
+            // 15. Auto-load audio from Resources/ folders
             var audioLoader = AudioManager.Instance?.gameObject.AddComponent<AudioAssetLoader>();
             audioLoader?.AutoScanResources();
 
-            // 15. Fill pap bucket
+            // 16. Fill pap bucket
             PapSystem.Instance?.FillBucket();
 
-            Debug.Log($"[Visvang] Game ready! Save: {SaveManager.Instance.SaveFilePath}");
+            Debug.Log($"[Visvang] Game loaded! Save: {SaveManager.Instance.SaveFilePath}");
+        }
+
+        private void OnSplashComplete()
+        {
+            Debug.Log("[Visvang] Splash complete. Welcome to the dam, bru!");
+            // Main menu is already visible from UIBuilder — splash just fades away to reveal it
         }
 
         private void OnCloudReady()
