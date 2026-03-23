@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using Visvang.Core;
 using Visvang.Equipment;
+using Random = UnityEngine.Random;
 
 namespace Visvang.Fishing
 {

@@ -24,8 +24,8 @@ namespace Visvang.Core
         {
             // Remove ALL existing cameras (default scene camera, etc.)
             var existingCams = Object.FindObjectsOfType<Camera>();
-            foreach (var cam in existingCams)
-                Object.Destroy(cam.gameObject);
+            foreach (var oldCam in existingCams)
+                Object.Destroy(oldCam.gameObject);
 
             var camGo = new GameObject("MainCamera");
             camGo.tag = "MainCamera";

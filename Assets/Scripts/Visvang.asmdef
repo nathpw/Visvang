@@ -3,7 +3,10 @@
     "rootNamespace": "Visvang",
     "references": [
         "Unity.TextMeshPro",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "Unity.Notifications.Android",
+        "Unity.Notifications.iOS",
+        "Unity.Notifications.Unified"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
