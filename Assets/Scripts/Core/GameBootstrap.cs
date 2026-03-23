@@ -71,8 +71,11 @@ namespace Visvang.Core
             }
 
             // 6. Initialize cloud services (Firebase) — async, non-blocking
-            CloudManager.Instance?.Initialize();
-            CloudManager.Instance.OnCloudReady += OnCloudReady;
+            if (CloudManager.Instance != null)
+            {
+                CloudManager.Instance.Initialize();
+                CloudManager.Instance.OnCloudReady += OnCloudReady;
+            }
 
             // 7. Cancel any pending notifications (player is back!)
             NotificationManager.Instance?.CancelAll();

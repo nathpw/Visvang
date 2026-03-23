@@ -71,6 +71,17 @@ namespace Visvang.Audio
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Auto-create AudioSources if not assigned (when created via AddComponent)
+            if (musicSource == null) musicSource = gameObject.AddComponent<AudioSource>();
+            if (ambienceSource == null) ambienceSource = gameObject.AddComponent<AudioSource>();
+            if (sfxSource == null) sfxSource = gameObject.AddComponent<AudioSource>();
+            if (uiSource == null) uiSource = gameObject.AddComponent<AudioSource>();
+
+            musicSource.playOnAwake = false;
+            ambienceSource.playOnAwake = false;
+            sfxSource.playOnAwake = false;
+            uiSource.playOnAwake = false;
         }
 
         // --- Music ---
