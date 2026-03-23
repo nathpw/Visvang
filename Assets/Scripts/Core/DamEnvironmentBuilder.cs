@@ -22,10 +22,10 @@ namespace Visvang.Core
 
         private static void CreateCamera()
         {
-            // Remove default camera if exists
-            var existingCam = Camera.main;
-            if (existingCam != null)
-                Object.Destroy(existingCam.gameObject);
+            // Remove ALL existing cameras (default scene camera, etc.)
+            var existingCams = Object.FindObjectsOfType<Camera>();
+            foreach (var cam in existingCams)
+                Object.Destroy(cam.gameObject);
 
             var camGo = new GameObject("MainCamera");
             camGo.tag = "MainCamera";
@@ -45,6 +45,14 @@ namespace Visvang.Core
 
         private static void CreateLighting()
         {
+            // Remove default scene light if exists
+            var existingLights = Object.FindObjectsOfType<Light>();
+            foreach (var light in existingLights)
+            {
+                if (light.type == LightType.Directional)
+                    Object.Destroy(light.gameObject);
+            }
+
             // Directional light (sun)
             var sunGo = new GameObject("Sun");
             var sun = sunGo.AddComponent<Light>();
