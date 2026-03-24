@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using Visvang.Core;
 
 namespace Visvang.UI
@@ -161,24 +160,24 @@ namespace Visvang.UI
             var topImg = topBar.GetComponent<Image>();
             topImg.color = bgDark;
 
-            refs.timeText = CreateText(topBar.transform, "TimeText", "Morning", 20, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.timeText = CreateText(topBar.transform, "TimeText", "Morning", 20, textWhite).GetComponent<Text>();
             SetAnchored(refs.timeText.gameObject, new Vector2(0.15f, 0.5f), new Vector2(150, 35));
 
-            refs.weatherText = CreateText(topBar.transform, "WeatherText", "Clear", 20, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.weatherText = CreateText(topBar.transform, "WeatherText", "Clear", 20, textWhite).GetComponent<Text>();
             SetAnchored(refs.weatherText.gameObject, new Vector2(0.5f, 0.5f), new Vector2(150, 35));
 
-            refs.levelText = CreateText(topBar.transform, "LevelText", "Level 1", 20, accentGold).GetComponent<TextMeshProUGUI>();
+            refs.levelText = CreateText(topBar.transform, "LevelText", "Level 1", 20, accentGold).GetComponent<Text>();
             SetAnchored(refs.levelText.gameObject, new Vector2(0.85f, 0.5f), new Vector2(150, 35));
 
             // Pap bucket bar (bottom left)
             refs.papBar = CreateProgressBar(panel.transform, "PapBar", accentGold, "Pap: 100%", new Vector2(0.18f, 0.06f), new Vector2(250, 35));
 
             // Status text (center)
-            refs.statusText = CreateText(panel.transform, "StatusText", "Ready to cast", 28, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.statusText = CreateText(panel.transform, "StatusText", "Ready to cast", 28, textWhite).GetComponent<Text>();
             SetAnchored(refs.statusText.gameObject, new Vector2(0.5f, 0.50f), new Vector2(600, 60));
 
             // Cast instruction
-            refs.castInstructionText = CreateText(panel.transform, "CastInstruction", "TAP AND HOLD TO CAST", 22, accentGold).GetComponent<TextMeshProUGUI>();
+            refs.castInstructionText = CreateText(panel.transform, "CastInstruction", "TAP AND HOLD TO CAST", 22, accentGold).GetComponent<Text>();
             SetAnchored(refs.castInstructionText.gameObject, new Vector2(0.5f, 0.42f), new Vector2(500, 40));
 
             // XP bar (top, under the top bar)
@@ -199,10 +198,10 @@ namespace Visvang.UI
             panel.GetComponent<Image>().color = new Color(0, 0, 0, 0); // Transparent overlay
 
             // Fish name and weight
-            refs.fightFishName = CreateText(panel.transform, "FishName", "", 32, accentGold).GetComponent<TextMeshProUGUI>();
+            refs.fightFishName = CreateText(panel.transform, "FishName", "", 32, accentGold).GetComponent<Text>();
             SetAnchored(refs.fightFishName.gameObject, new Vector2(0.5f, 0.88f), new Vector2(500, 50));
 
-            refs.fightFishWeight = CreateText(panel.transform, "FishWeight", "", 22, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.fightFishWeight = CreateText(panel.transform, "FishWeight", "", 22, textWhite).GetComponent<Text>();
             SetAnchored(refs.fightFishWeight.gameObject, new Vector2(0.5f, 0.84f), new Vector2(300, 35));
 
             // Tension bar
@@ -236,7 +235,7 @@ namespace Visvang.UI
             refs.gripPanel.SetActive(false);
 
             // Death roll warning
-            refs.deathRollWarning = CreateText(panel.transform, "DeathRollWarning", "DEATH ROLL! HOLD ON!", 36, accentRed).GetComponent<TextMeshProUGUI>();
+            refs.deathRollWarning = CreateText(panel.transform, "DeathRollWarning", "DEATH ROLL! HOLD ON!", 36, accentRed).GetComponent<Text>();
             SetAnchored(refs.deathRollWarning.gameObject, new Vector2(0.5f, 0.55f), new Vector2(600, 60));
             refs.deathRollWarning.gameObject.SetActive(false);
 
@@ -247,7 +246,7 @@ namespace Visvang.UI
             refs.disorientOverlay.SetActive(false);
 
             // Reel instruction
-            refs.reelInstruction = CreateText(panel.transform, "ReelInstruction", "HOLD TO REEL!", 26, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.reelInstruction = CreateText(panel.transform, "ReelInstruction", "HOLD TO REEL!", 26, textWhite).GetComponent<Text>();
             SetAnchored(refs.reelInstruction.gameObject, new Vector2(0.5f, 0.40f), new Vector2(400, 50));
 
             return panel;
@@ -267,16 +266,16 @@ namespace Visvang.UI
             frame.GetComponent<Image>().color = new Color(0.1f, 0.15f, 0.25f);
             SetAnchored(frame, new Vector2(0.5f, 0.62f), new Vector2(400, 300));
 
-            refs.catchFishName = CreateText(frame.transform, "CatchFishName", "", 36, accentGold).GetComponent<TextMeshProUGUI>();
+            refs.catchFishName = CreateText(frame.transform, "CatchFishName", "", 36, accentGold).GetComponent<Text>();
             SetAnchored(refs.catchFishName.gameObject, new Vector2(0.5f, 0.85f), new Vector2(350, 50));
 
-            refs.catchSpecies = CreateText(frame.transform, "CatchSpecies", "", 22, textMuted).GetComponent<TextMeshProUGUI>();
+            refs.catchSpecies = CreateText(frame.transform, "CatchSpecies", "", 22, textMuted).GetComponent<Text>();
             SetAnchored(refs.catchSpecies.gameObject, new Vector2(0.5f, 0.7f), new Vector2(350, 35));
 
-            refs.catchWeight = CreateText(frame.transform, "CatchWeight", "", 32, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.catchWeight = CreateText(frame.transform, "CatchWeight", "", 32, textWhite).GetComponent<Text>();
             SetAnchored(refs.catchWeight.gameObject, new Vector2(0.5f, 0.45f), new Vector2(350, 50));
 
-            refs.catchRarity = CreateText(frame.transform, "CatchRarity", "", 24, accentGold).GetComponent<TextMeshProUGUI>();
+            refs.catchRarity = CreateText(frame.transform, "CatchRarity", "", 24, accentGold).GetComponent<Text>();
             SetAnchored(refs.catchRarity.gameObject, new Vector2(0.5f, 0.25f), new Vector2(350, 40));
 
             // Badges
@@ -293,7 +292,7 @@ namespace Visvang.UI
             refs.legendaryBadge.SetActive(false);
 
             // XP gained
-            refs.catchXPText = CreateText(panel.transform, "XPGained", "+50 XP", 32, accentBlue).GetComponent<TextMeshProUGUI>();
+            refs.catchXPText = CreateText(panel.transform, "XPGained", "+50 XP", 32, accentBlue).GetComponent<Text>();
             SetAnchored(refs.catchXPText.gameObject, new Vector2(0.5f, 0.35f), new Vector2(300, 50));
 
             // Continue button
@@ -319,10 +318,10 @@ namespace Visvang.UI
             outline.effectColor = accentRed;
             outline.effectDistance = new Vector2(3, 3);
 
-            refs.chaosTitle = CreateText(panel.transform, "ChaosTitle", "CHAOS EVENT!", 36, accentRed).GetComponent<TextMeshProUGUI>();
+            refs.chaosTitle = CreateText(panel.transform, "ChaosTitle", "CHAOS EVENT!", 36, accentRed).GetComponent<Text>();
             SetAnchored(refs.chaosTitle.gameObject, new Vector2(0.5f, 0.75f), new Vector2(500, 50));
 
-            refs.chaosMessage = CreateText(panel.transform, "ChaosMessage", "", 22, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.chaosMessage = CreateText(panel.transform, "ChaosMessage", "", 22, textWhite).GetComponent<Text>();
             SetAnchored(refs.chaosMessage.gameObject, new Vector2(0.5f, 0.40f), new Vector2(600, 80));
 
             return panel;
@@ -345,12 +344,12 @@ namespace Visvang.UI
             var bg = panel.AddComponent<Image>();
             bg.color = new Color(0.05f, 0.08f, 0.15f, 0.85f);
 
-            refs.messageText = CreateText(panel.transform, "MessageText", "", 24, textWhite).GetComponent<TextMeshProUGUI>();
+            refs.messageText = CreateText(panel.transform, "MessageText", "", 24, textWhite).GetComponent<Text>();
             var msgRect = refs.messageText.GetComponent<RectTransform>();
             StretchFull(msgRect);
             msgRect.offsetMin = new Vector2(20, 10);
             msgRect.offsetMax = new Vector2(-20, -10);
-            refs.messageText.alignment = TextAlignmentOptions.Center;
+            refs.messageText.alignment = TextAnchor.MiddleCenter;
 
             refs.messageCanvasGroup = canvasGroup;
 
@@ -453,13 +452,14 @@ namespace Visvang.UI
             var go = new GameObject(name);
             go.transform.SetParent(parent, false);
             go.AddComponent<RectTransform>();
-            var tmp = go.AddComponent<TextMeshProUGUI>();
-            tmp.text = text;
-            tmp.fontSize = fontSize;
-            tmp.color = color;
-            tmp.alignment = TextAlignmentOptions.Center;
-            tmp.enableWordWrapping = true;
-            tmp.overflowMode = TextOverflowModes.Ellipsis;
+            var txt = go.AddComponent<Text>();
+            txt.text = text;
+            txt.fontSize = fontSize;
+            txt.color = color;
+            txt.alignment = TextAnchor.MiddleCenter;
+            txt.horizontalOverflow = HorizontalWrapMode.Wrap;
+            txt.verticalOverflow = VerticalWrapMode.Truncate;
+            txt.font = TextHelper.GetFont();
             return go;
         }
 
@@ -483,12 +483,13 @@ namespace Visvang.UI
             textGo.transform.SetParent(go.transform, false);
             var textRect = textGo.AddComponent<RectTransform>();
             StretchFull(textRect);
-            var tmp = textGo.AddComponent<TextMeshProUGUI>();
-            tmp.text = label;
-            tmp.fontSize = fontSize;
-            tmp.color = Color.white;
-            tmp.alignment = TextAlignmentOptions.Center;
-            tmp.fontStyle = FontStyles.Bold;
+            var txt = textGo.AddComponent<Text>();
+            txt.text = label;
+            txt.fontSize = fontSize;
+            txt.color = Color.white;
+            txt.alignment = TextAnchor.MiddleCenter;
+            txt.fontStyle = FontStyle.Bold;
+            txt.font = TextHelper.GetFont();
 
             return go;
         }
@@ -580,43 +581,43 @@ namespace Visvang.UI
         public GameObject dipSelectionPanel;
 
         // HUD elements
-        public TextMeshProUGUI timeText;
-        public TextMeshProUGUI weatherText;
-        public TextMeshProUGUI levelText;
-        public TextMeshProUGUI statusText;
-        public TextMeshProUGUI castInstructionText;
+        public Text timeText;
+        public Text weatherText;
+        public Text levelText;
+        public Text statusText;
+        public Text castInstructionText;
         public Slider papBar;
         public Slider xpBar;
 
         // Fight elements
-        public TextMeshProUGUI fightFishName;
-        public TextMeshProUGUI fightFishWeight;
+        public Text fightFishName;
+        public Text fightFishWeight;
         public Slider tensionBar;
         public Slider fightProgressBar;
         public GameObject slimePanel;
         public Slider slimeBar;
         public GameObject gripPanel;
         public Slider gripBar;
-        public TextMeshProUGUI deathRollWarning;
+        public Text deathRollWarning;
         public GameObject disorientOverlay;
-        public TextMeshProUGUI reelInstruction;
+        public Text reelInstruction;
 
         // Catch panel
-        public TextMeshProUGUI catchFishName;
-        public TextMeshProUGUI catchSpecies;
-        public TextMeshProUGUI catchWeight;
-        public TextMeshProUGUI catchRarity;
-        public TextMeshProUGUI catchXPText;
+        public Text catchFishName;
+        public Text catchSpecies;
+        public Text catchWeight;
+        public Text catchRarity;
+        public Text catchXPText;
         public GameObject firstCatchBadge;
         public GameObject newRecordBadge;
         public GameObject legendaryBadge;
 
         // Chaos
-        public TextMeshProUGUI chaosTitle;
-        public TextMeshProUGUI chaosMessage;
+        public Text chaosTitle;
+        public Text chaosMessage;
 
         // Messages
-        public TextMeshProUGUI messageText;
+        public Text messageText;
         public CanvasGroup messageCanvasGroup;
 
         // Dip selection

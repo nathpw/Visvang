@@ -28,6 +28,20 @@ public class BuildScript
         // Splash
         PlayerSettings.SplashScreen.showUnityLogo = false;
 
+        // App icon — use Visvang.png
+        var iconTex = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/Sprites/splash_screen.png");
+        if (iconTex != null)
+        {
+            var icons = PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.Android);
+            var sizes = PlayerSettings.GetIconSizesForTargetGroup(BuildTargetGroup.Android);
+            if (icons.Length > 0)
+            {
+                for (int i = 0; i < icons.Length; i++)
+                    icons[i] = iconTex;
+                PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Android, icons);
+            }
+        }
+
         // Build output
         string buildPath = Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Builds");
         Directory.CreateDirectory(buildPath);

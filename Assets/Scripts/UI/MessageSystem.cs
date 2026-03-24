@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 using System.Collections;
 using System.Collections.Generic;
 using Visvang.Core;
@@ -27,7 +27,7 @@ namespace Visvang.UI
         public static MessageSystem Instance { get; private set; }
 
         [Header("UI References")]
-        [SerializeField] private TextMeshProUGUI messageText;
+        [SerializeField] private Text messageText;
         [SerializeField] private GameObject messagePanel;
         [SerializeField] private CanvasGroup messageCanvasGroup;
 

@@ -98,12 +98,13 @@ namespace Visvang.UI
             tapRect.anchorMax = new Vector2(0.5f, 0.05f);
             tapRect.sizeDelta = new Vector2(600, 50);
 
-            var tapText = tapGo.AddComponent<TMPro.TextMeshProUGUI>();
+            var tapText = tapGo.AddComponent<Text>();
             tapText.text = "Tap to start fishing!";
             tapText.fontSize = 28;
             tapText.color = new Color(1f, 1f, 1f, 0.8f);
-            tapText.alignment = TMPro.TextAlignmentOptions.Center;
-            tapText.fontStyle = TMPro.FontStyles.Italic;
+            tapText.alignment = TextAnchor.MiddleCenter;
+            tapText.fontStyle = FontStyle.Italic;
+            tapText.font = TextHelper.GetFont();
         }
 
         private IEnumerator SplashSequence(float fadeIn, float hold, float fadeOut)

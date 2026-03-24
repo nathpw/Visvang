@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 using Visvang.Core;
 using Visvang.Fishing;
 using Visvang.Bait;
@@ -23,12 +23,12 @@ namespace Visvang.UI
 
         [Header("Fight Progress")]
         [SerializeField] private Slider fightProgressBar;
-        [SerializeField] private TextMeshProUGUI fishNameText;
-        [SerializeField] private TextMeshProUGUI fishWeightText;
+        [SerializeField] private Text fishNameText;
+        [SerializeField] private Text fishWeightText;
 
         [Header("Pap Bucket")]
         [SerializeField] private Slider papBar;
-        [SerializeField] private TextMeshProUGUI papText;
+        [SerializeField] private Text papText;
 
         [Header("Slime Meter")]
         [SerializeField] private Slider slimeBar;
@@ -43,11 +43,11 @@ namespace Visvang.UI
         [SerializeField] private GameObject gripPanel;
 
         [Header("Info")]
-        [SerializeField] private TextMeshProUGUI timeText;
-        [SerializeField] private TextMeshProUGUI weatherText;
-        [SerializeField] private TextMeshProUGUI levelText;
+        [SerializeField] private Text timeText;
+        [SerializeField] private Text weatherText;
+        [SerializeField] private Text levelText;
         [SerializeField] private Slider xpBar;
-        [SerializeField] private TextMeshProUGUI statusText;
+        [SerializeField] private Text statusText;
 
         [Header("Disorientation Effect")]
         [SerializeField] private GameObject disorientOverlay;

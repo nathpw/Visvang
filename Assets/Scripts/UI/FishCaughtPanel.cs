@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 using Visvang.Core;
 using Visvang.Fish;
 using Visvang.Fishing;
@@ -15,15 +15,15 @@ namespace Visvang.UI
     {
         [Header("Fish Display")]
         [SerializeField] private Image fishImage;
-        [SerializeField] private TextMeshProUGUI fishNameText;
-        [SerializeField] private TextMeshProUGUI speciesText;
-        [SerializeField] private TextMeshProUGUI weightText;
-        [SerializeField] private TextMeshProUGUI lengthText;
-        [SerializeField] private TextMeshProUGUI rarityText;
+        [SerializeField] private Text fishNameText;
+        [SerializeField] private Text speciesText;
+        [SerializeField] private Text weightText;
+        [SerializeField] private Text lengthText;
+        [SerializeField] private Text rarityText;
 
         [Header("XP Display")]
-        [SerializeField] private TextMeshProUGUI xpGainedText;
-        [SerializeField] private TextMeshProUGUI totalXPText;
+        [SerializeField] private Text xpGainedText;
+        [SerializeField] private Text totalXPText;
         [SerializeField] private Slider xpBar;
 
         [Header("Badges")]

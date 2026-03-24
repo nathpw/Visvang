@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using Visvang.Fish;
@@ -660,7 +659,7 @@ namespace Visvang.Core
             BaitManager.Instance?.SelectDip(dip);
 
             // Show warning
-            var warning = ui.gearSetupPanel.transform.Find("DipWarning")?.GetComponent<TextMeshProUGUI>();
+            var warning = ui.gearSetupPanel.transform.Find("DipWarning")?.GetComponent<Text>();
             if (warning != null)
             {
                 string warn = BaitManager.Instance?.GetDipWarning(dip);
@@ -720,7 +719,7 @@ namespace Visvang.Core
             var save = SaveManager.Instance?.CurrentSave;
             int totalSessions = save?.statistics.totalSessionsPlayed ?? 0;
 
-            var statsText = ui.resultsPanel.transform.Find("StatsText")?.GetComponent<TextMeshProUGUI>();
+            var statsText = ui.resultsPanel.transform.Find("StatsText")?.GetComponent<Text>();
             if (statsText != null)
             {
                 statsText.text =
@@ -755,7 +754,7 @@ namespace Visvang.Core
         {
             if (PlayerProfile.Instance == null) return;
 
-            var levelText = ui.mainMenuPanel?.transform.Find("LevelText")?.GetComponent<TextMeshProUGUI>();
+            var levelText = ui.mainMenuPanel?.transform.Find("LevelText")?.GetComponent<Text>();
             if (levelText != null)
                 levelText.text = $"Level {PlayerProfile.Instance.PlayerLevel} {PlayerProfile.Instance.PlayerName}";
 
@@ -768,11 +767,11 @@ namespace Visvang.Core
             var em = EquipmentManager.Instance;
             if (em == null) return;
 
-            var rodName = ui.gearSetupPanel.transform.Find("RodName")?.GetComponent<TextMeshProUGUI>();
+            var rodName = ui.gearSetupPanel.transform.Find("RodName")?.GetComponent<Text>();
             if (rodName != null && em.EquippedRod != null)
                 rodName.text = em.EquippedRod.rodName;
 
-            var reelName = ui.gearSetupPanel.transform.Find("ReelName")?.GetComponent<TextMeshProUGUI>();
+            var reelName = ui.gearSetupPanel.transform.Find("ReelName")?.GetComponent<Text>();
             if (reelName != null && em.EquippedReel != null)
                 reelName.text = em.EquippedReel.reelName;
         }
@@ -903,7 +902,7 @@ namespace Visvang.Core
             }
         }
 
-        private IEnumerator FlashText(TextMeshProUGUI text, float interval)
+        private IEnumerator FlashText(Text text, float interval)
         {
             for (int i = 0; i < 6; i++)
             {
