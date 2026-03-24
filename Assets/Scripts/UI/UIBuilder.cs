@@ -151,14 +151,13 @@ namespace Visvang.UI
             StretchFull(panel.GetComponent<RectTransform>());
 
             // Top bar - time, weather, level
-            var topBar = CreatePanel(panel.transform, "TopBar", false);
+            var topBar = CreatePanel(panel.transform, "TopBar", true);
             var topRect = topBar.GetComponent<RectTransform>();
             topRect.anchorMin = new Vector2(0, 0.93f);
             topRect.anchorMax = new Vector2(1, 1f);
             topRect.offsetMin = Vector2.zero;
             topRect.offsetMax = Vector2.zero;
-            var topImg = topBar.GetComponent<Image>();
-            topImg.color = bgDark;
+            topBar.GetComponent<Image>().color = bgDark;
 
             refs.timeText = CreateText(topBar.transform, "TimeText", "Morning", 20, textWhite).GetComponent<Text>();
             SetAnchored(refs.timeText.gameObject, new Vector2(0.15f, 0.5f), new Vector2(150, 35));
@@ -193,7 +192,7 @@ namespace Visvang.UI
         // --- FIGHT PANEL (overlays on HUD) ---
         private static GameObject BuildFightPanel(Transform parent, UIReferences refs)
         {
-            var panel = CreatePanel(parent, "FightPanel", false);
+            var panel = CreatePanel(parent, "FightPanel", true);
             StretchFull(panel.GetComponent<RectTransform>());
             panel.GetComponent<Image>().color = new Color(0, 0, 0, 0); // Transparent overlay
 
@@ -240,7 +239,7 @@ namespace Visvang.UI
             refs.deathRollWarning.gameObject.SetActive(false);
 
             // Disorient overlay
-            refs.disorientOverlay = CreatePanel(panel.transform, "DisorientOverlay", false);
+            refs.disorientOverlay = CreatePanel(panel.transform, "DisorientOverlay", true);
             refs.disorientOverlay.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 0.3f);
             StretchFull(refs.disorientOverlay.GetComponent<RectTransform>());
             refs.disorientOverlay.SetActive(false);
@@ -305,7 +304,7 @@ namespace Visvang.UI
         // --- CHAOS EVENT PANEL ---
         private static GameObject BuildChaosPanel(Transform parent, UIReferences refs)
         {
-            var panel = CreatePanel(parent, "ChaosPanel", false);
+            var panel = CreatePanel(parent, "ChaosPanel", true);
             var rect = panel.GetComponent<RectTransform>();
             rect.anchorMin = new Vector2(0.05f, 0.35f);
             rect.anchorMax = new Vector2(0.95f, 0.65f);

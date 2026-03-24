@@ -73,7 +73,7 @@ public class BuildScript
         }
     }
 
-    private static string[] GetBuildScenes()
+    public static string[] GetBuildScenes()
     {
         // Check build settings first
         var editorScenes = EditorBuildSettings.scenes;
