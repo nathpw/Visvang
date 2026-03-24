@@ -48,7 +48,7 @@ namespace Visvang.Art
             tex.SetPixels(pixels);
             tex.Apply();
 
-            Material mat = new Material(Shader.Find("Standard"));
+            Material mat = new Material(Visvang.Core.ShaderHelper.GetOpaque());
             mat.mainTexture = tex;
             mat.SetFloat("_Metallic", 0.3f);
             mat.SetFloat("_Glossiness", 0.85f);
@@ -99,7 +99,7 @@ namespace Visvang.Art
             tex.SetPixels(pixels);
             tex.Apply();
 
-            Material mat = new Material(Shader.Find("Standard"));
+            Material mat = new Material(Visvang.Core.ShaderHelper.GetOpaque());
             mat.mainTexture = tex;
             mat.name = "GrassMaterial";
             return mat;
@@ -137,7 +137,7 @@ namespace Visvang.Art
             tex.SetPixels(pixels);
             tex.Apply();
 
-            Material mat = new Material(Shader.Find("Standard"));
+            Material mat = new Material(Visvang.Core.ShaderHelper.GetOpaque());
             mat.mainTexture = tex;
             mat.name = "DirtMaterial";
             return mat;
@@ -191,7 +191,7 @@ namespace Visvang.Art
 
             // Use default particle material
             var renderer = go.GetComponent<ParticleSystemRenderer>();
-            renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
+            renderer.material = new Material(Visvang.Core.ShaderHelper.GetParticle());
             renderer.material.color = new Color(0.5f, 0.7f, 0.9f, 0.7f);
 
             return go;
@@ -243,7 +243,7 @@ namespace Visvang.Art
             colorOverLifetime.color = grad;
 
             var renderer = go.GetComponent<ParticleSystemRenderer>();
-            renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
+            renderer.material = new Material(Visvang.Core.ShaderHelper.GetParticle());
             renderer.material.color = new Color(1f, 0.95f, 0.5f);
 
             return go;
@@ -275,7 +275,7 @@ namespace Visvang.Art
             shape.radius = 0.2f;
 
             var renderer = go.GetComponent<ParticleSystemRenderer>();
-            renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
+            renderer.material = new Material(Visvang.Core.ShaderHelper.GetParticle());
             renderer.material.color = new Color(0.3f, 0.6f, 0.1f, 0.8f);
 
             return go;

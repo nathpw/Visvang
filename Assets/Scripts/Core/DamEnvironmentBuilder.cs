@@ -84,20 +84,7 @@ namespace Visvang.Core
             waterGo.transform.localScale = new Vector3(30f, 1f, 20f);
 
             var renderer = waterGo.GetComponent<Renderer>();
-            var waterMat = new Material(Shader.Find("Standard"));
-            waterMat.color = new Color(0.15f, 0.35f, 0.45f, 0.85f);
-            waterMat.SetFloat("_Metallic", 0.3f);
-            waterMat.SetFloat("_Glossiness", 0.8f);
-
-            // Make it semi-transparent
-            waterMat.SetFloat("_Mode", 3); // Transparent mode
-            waterMat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            waterMat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            waterMat.SetInt("_ZWrite", 0);
-            waterMat.DisableKeyword("_ALPHATEST_ON");
-            waterMat.EnableKeyword("_ALPHABLEND_ON");
-            waterMat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            waterMat.renderQueue = 3000;
+            var waterMat = ShaderHelper.CreateTransparentMaterial(new Color(0.15f, 0.35f, 0.45f, 0.85f));
 
             renderer.material = waterMat;
 
@@ -108,7 +95,7 @@ namespace Visvang.Core
             deepGo.transform.localScale = new Vector3(30f, 1f, 20f);
 
             var deepRenderer = deepGo.GetComponent<Renderer>();
-            var deepMat = new Material(Shader.Find("Standard"));
+            var deepMat = new Material(ShaderHelper.GetOpaque());
             deepMat.color = new Color(0.05f, 0.12f, 0.15f);
             deepRenderer.material = deepMat;
 
@@ -129,7 +116,7 @@ namespace Visvang.Core
             bankGo.transform.localScale = new Vector3(40f, 1f, 10f);
 
             var bankRenderer = bankGo.GetComponent<Renderer>();
-            var bankMat = new Material(Shader.Find("Standard"));
+            var bankMat = new Material(ShaderHelper.GetOpaque());
             bankMat.color = new Color(0.35f, 0.28f, 0.18f); // Brown earth
             bankRenderer.material = bankMat;
 
@@ -141,7 +128,7 @@ namespace Visvang.Core
             slopeGo.transform.rotation = Quaternion.Euler(15f, 0f, 0f);
 
             var slopeRenderer = slopeGo.GetComponent<Renderer>();
-            var slopeMat = new Material(Shader.Find("Standard"));
+            var slopeMat = new Material(ShaderHelper.GetOpaque());
             slopeMat.color = new Color(0.3f, 0.25f, 0.15f);
             slopeRenderer.material = slopeMat;
 
@@ -152,7 +139,7 @@ namespace Visvang.Core
             farBankGo.transform.localScale = new Vector3(60f, 4f, 20f);
 
             var farBankRenderer = farBankGo.GetComponent<Renderer>();
-            var farBankMat = new Material(Shader.Find("Standard"));
+            var farBankMat = new Material(ShaderHelper.GetOpaque());
             farBankMat.color = new Color(0.25f, 0.35f, 0.2f); // Green far bank
             farBankRenderer.material = farBankMat;
         }
@@ -177,14 +164,7 @@ namespace Visvang.Core
                 );
 
                 var cloudRenderer = cloudGo.GetComponent<Renderer>();
-                var cloudMat = new Material(Shader.Find("Standard"));
-                cloudMat.color = new Color(0.9f, 0.92f, 0.95f, 0.7f);
-                cloudMat.SetFloat("_Mode", 3);
-                cloudMat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                cloudMat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                cloudMat.SetInt("_ZWrite", 0);
-                cloudMat.EnableKeyword("_ALPHABLEND_ON");
-                cloudMat.renderQueue = 3000;
+                var cloudMat = ShaderHelper.CreateTransparentMaterial(new Color(0.9f, 0.92f, 0.95f, 0.7f));
                 cloudRenderer.material = cloudMat;
                 cloudRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
@@ -202,7 +182,7 @@ namespace Visvang.Core
             bucketGo.name = "PapBucket";
             bucketGo.transform.position = new Vector3(1.5f, 0.2f, -2f);
             bucketGo.transform.localScale = new Vector3(0.3f, 0.25f, 0.3f);
-            var bucketMat = new Material(Shader.Find("Standard"));
+            var bucketMat = new Material(ShaderHelper.GetOpaque());
             bucketMat.color = new Color(0.7f, 0.7f, 0.75f);
             bucketGo.GetComponent<Renderer>().material = bucketMat;
 
@@ -211,7 +191,7 @@ namespace Visvang.Core
             chairGo.name = "FishingChair";
             chairGo.transform.position = new Vector3(0f, 0.3f, -3.5f);
             chairGo.transform.localScale = new Vector3(0.6f, 0.5f, 0.6f);
-            var chairMat = new Material(Shader.Find("Standard"));
+            var chairMat = new Material(ShaderHelper.GetOpaque());
             chairMat.color = new Color(0.2f, 0.35f, 0.15f); // Green camping chair
             chairGo.GetComponent<Renderer>().material = chairMat;
 
@@ -220,7 +200,7 @@ namespace Visvang.Core
             tackleGo.name = "TackleBox";
             tackleGo.transform.position = new Vector3(-2f, 0.15f, -3f);
             tackleGo.transform.localScale = new Vector3(0.5f, 0.3f, 0.35f);
-            var tackleMat = new Material(Shader.Find("Standard"));
+            var tackleMat = new Material(ShaderHelper.GetOpaque());
             tackleMat.color = new Color(0.3f, 0.3f, 0.35f);
             tackleGo.GetComponent<Renderer>().material = tackleMat;
 
@@ -239,7 +219,7 @@ namespace Visvang.Core
                     Random.Range(1f, 2f),
                     Random.Range(1.5f, 3f)
                 );
-                var bushMat = new Material(Shader.Find("Standard"));
+                var bushMat = new Material(ShaderHelper.GetOpaque());
                 bushMat.color = new Color(
                     Random.Range(0.15f, 0.25f),
                     Random.Range(0.3f, 0.5f),
@@ -268,7 +248,7 @@ namespace Visvang.Core
             stick1.transform.position = position + new Vector3(-0.15f, 0.5f, 0f);
             stick1.transform.localScale = new Vector3(0.03f, 0.5f, 0.03f);
             stick1.transform.rotation = Quaternion.Euler(0f, 0f, -5f);
-            var mat1 = new Material(Shader.Find("Standard"));
+            var mat1 = new Material(ShaderHelper.GetOpaque());
             mat1.color = new Color(0.3f, 0.3f, 0.3f);
             stick1.GetComponent<Renderer>().material = mat1;
 
@@ -286,7 +266,7 @@ namespace Visvang.Core
             rod.transform.position = position + new Vector3(0f, 0.9f, 2f);
             rod.transform.localScale = new Vector3(0.02f, 2.5f, 0.02f);
             rod.transform.rotation = Quaternion.Euler(0f, 0f, 90f) * Quaternion.Euler(10f, 0f, 0f);
-            var rodMat = new Material(Shader.Find("Standard"));
+            var rodMat = new Material(ShaderHelper.GetOpaque());
             rodMat.color = new Color(0.2f, 0.2f, 0.25f);
             rod.GetComponent<Renderer>().material = rodMat;
 
@@ -295,7 +275,7 @@ namespace Visvang.Core
             line.name = "FishingLine";
             line.transform.position = position + new Vector3(0f, 0.5f, 15f);
             line.transform.localScale = new Vector3(0.005f, 0.005f, 25f);
-            var lineMat = new Material(Shader.Find("Standard"));
+            var lineMat = new Material(ShaderHelper.GetOpaque());
             lineMat.color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
             line.GetComponent<Renderer>().material = lineMat;
             Object.Destroy(line.GetComponent<Collider>());
@@ -308,7 +288,7 @@ namespace Visvang.Core
             trunk.name = "TreeTrunk";
             trunk.transform.position = position + new Vector3(0f, 2f, 0f);
             trunk.transform.localScale = new Vector3(0.3f, 2f, 0.3f);
-            var trunkMat = new Material(Shader.Find("Standard"));
+            var trunkMat = new Material(ShaderHelper.GetOpaque());
             trunkMat.color = new Color(0.3f, 0.2f, 0.1f);
             trunk.GetComponent<Renderer>().material = trunkMat;
             Object.Destroy(trunk.GetComponent<Collider>());
@@ -322,7 +302,7 @@ namespace Visvang.Core
                 Random.Range(2.5f, 4f),
                 Random.Range(3f, 5f)
             );
-            var canopyMat = new Material(Shader.Find("Standard"));
+            var canopyMat = new Material(ShaderHelper.GetOpaque());
             canopyMat.color = new Color(
                 Random.Range(0.1f, 0.2f),
                 Random.Range(0.3f, 0.5f),

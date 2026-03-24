@@ -67,6 +67,43 @@ namespace Visvang.Core
 
         private void LoadGame()
         {
+            try
+            {
+                LoadGameInternal();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[Visvang] CRITICAL: LoadGame failed: {e.Message}\n{e.StackTrace}");
+                // Show error on screen so user can report it
+                ShowErrorScreen(e.Message);
+            }
+        }
+
+        private void ShowErrorScreen(string error)
+        {
+            var canvas = new GameObject("ErrorCanvas").AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 9999;
+            canvas.gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();
+
+            var textGo = new GameObject("ErrorText");
+            textGo.transform.SetParent(canvas.transform, false);
+            var rect = textGo.AddComponent<RectTransform>();
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = new Vector2(20, 20);
+            rect.offsetMax = new Vector2(-20, -20);
+
+            var text = textGo.AddComponent<UnityEngine.UI.Text>();
+            text.text = $"Visvang Error:\n{error}\n\nPlease report this!";
+            text.fontSize = 24;
+            text.color = Color.white;
+            text.alignment = TextAnchor.MiddleCenter;
+            text.font = UI.TextHelper.GetFont();
+        }
+
+        private void LoadGameInternal()
+        {
             // 6. Load all game data definitions (fish, dips, rods, reels)
             RuntimeDataLoader.LoadAll();
 

@@ -4,9 +4,8 @@ using UnityEngine.UI;
 namespace Visvang.UI
 {
     /// <summary>
-    /// Creates UI Text components using built-in Unity UI (not TextMeshPro).
-    /// TMP requires Essential Resources imported which may not exist in fresh projects.
-    /// This uses UnityEngine.UI.Text which always works.
+    /// Bulletproof font loading for all platforms.
+    /// Bundles Inter-Regular.ttf in Resources/Fonts/ as guaranteed fallback.
     /// </summary>
     public static class TextHelper
     {
@@ -16,46 +15,47 @@ namespace Visvang.UI
         {
             if (cachedFont != null) return cachedFont;
 
-            // Try to load Arial (built-in)
+            // 1. Try our bundled font (guaranteed to exist in build)
+            cachedFont = Resources.Load<Font>("Fonts/GameFont");
+            if (cachedFont != null) return cachedFont;
+
+            // 2. Try Unity built-in fonts
             cachedFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            if (cachedFont == null)
-                cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
-            if (cachedFont == null)
-                cachedFont = Font.CreateDynamicFontFromOSFont("Arial", 16);
-            if (cachedFont == null)
+            if (cachedFont != null) return cachedFont;
+
+            cachedFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            if (cachedFont != null) return cachedFont;
+
+            // 3. Try OS fonts
+            try
             {
-                // Last resort: find any font
-                var fonts = Font.GetOSInstalledFontNames();
-                if (fonts.Length > 0)
-                    cachedFont = Font.CreateDynamicFontFromOSFont(fonts[0], 16);
+                var fontNames = Font.GetOSInstalledFontNames();
+                if (fontNames != null && fontNames.Length > 0)
+                {
+                    // Prefer common fonts
+                    foreach (var preferred in new[] { "Arial", "Roboto", "DroidSans", "NotoSans", "Helvetica", "sans-serif" })
+                    {
+                        foreach (var name in fontNames)
+                        {
+                            if (name.Contains(preferred))
+                            {
+                                cachedFont = Font.CreateDynamicFontFromOSFont(name, 16);
+                                if (cachedFont != null) return cachedFont;
+                            }
+                        }
+                    }
+                    // Any font at all
+                    cachedFont = Font.CreateDynamicFontFromOSFont(fontNames[0], 16);
+                    if (cachedFont != null) return cachedFont;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[TextHelper] OS font fallback failed: {e.Message}");
             }
 
-            return cachedFont;
-        }
-
-        /// <summary>
-        /// Create a UI Text element (built-in, no TMP dependency).
-        /// </summary>
-        public static Text CreateText(Transform parent, string name, string content, int fontSize, Color color)
-        {
-            var go = new GameObject(name);
-            go.transform.SetParent(parent, false);
-            go.AddComponent<RectTransform>();
-
-            var text = go.AddComponent<Text>();
-            text.text = content;
-            text.fontSize = fontSize;
-            text.color = color;
-            text.alignment = TextAnchor.MiddleCenter;
-            text.horizontalOverflow = HorizontalWrapMode.Wrap;
-            text.verticalOverflow = VerticalWrapMode.Truncate;
-            text.font = GetFont();
-            text.supportRichText = true;
-
-            // Add best-fit for readability
-            text.resizeTextForBestFit = false;
-
-            return text;
+            Debug.LogError("[TextHelper] No font found at all!");
+            return null;
         }
     }
 }

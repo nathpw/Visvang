@@ -164,7 +164,7 @@ namespace Visvang.Art
             colorOverLifetime.color = grad;
 
             var renderer = go.GetComponent<ParticleSystemRenderer>();
-            renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
+            renderer.material = new Material(Visvang.Core.ShaderHelper.GetParticle());
             renderer.material.color = new Color(0.4f, 0.6f, 0.8f, 0.15f);
             renderer.renderMode = ParticleSystemRenderMode.HorizontalBillboard;
         }
